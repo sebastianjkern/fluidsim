@@ -4,7 +4,7 @@ Basic fluid simulation based on Jos Stams paper on Real-Time Fluid Dynamics for 
 
 ## Some Examples
 
-<img src="/sim1.png" width="250"> <img src="/sim2.png" width="250">
+<img src="/sim1.png" height="250"> <img src="/sim2.png" height="250">
 
 ## Requirements
 
