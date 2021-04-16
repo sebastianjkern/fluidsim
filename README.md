@@ -1,2 +1,17 @@
-# fluidsim
-Basic fluid simulation based on Jos Stam paper on Reat-Time Fluid Dynamics for Games
+# Fluid Sim
+
+Basic fluid simulation based on Jos Stams paper on Real-Time Fluid Dynamics for Games.
+
+## Some Examples
+
+<img src="/sim1.png" width="250"> <img src="/sim2.png" width="250">
+
+## Requirements
+
+- imageio
+- matplotlib
+- numpy
+
+## License
+
+This project is licensed under the MIT-License
