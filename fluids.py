@@ -1,5 +1,3 @@
-import math
-
 import imageio as imageio
 import matplotlib.pyplot as plt
 import numpy as np
@@ -89,35 +87,41 @@ def project(velocity_x, velocity_y, p, div):
 
 
 def advect(d, d0, velocity):
-    dtx = dt * (size - 2)
-    dty = dt * (size - 2)
+    dt0 = dt * (size - 2)
     for j in range(1, size - 1):
         for i in range(1, size - 1):
-            x = i - dtx * velocity[i, j, 0]
-            y = j - dty * velocity[i, j, 1]
+            x = i - dt0 * velocity[i, j, 0]
+            y = j - dt0 * velocity[i, j, 1]
+
             if x < 0.5:
                 x = 0.5
+
             if x > size + 0.5:
                 x = size + 0.5
-            i0 = math.floor(x)
-            if y < 0.5: y = 0.5
-            if y > size + 0.5: y = size + 0.5
-            j0 = math.floor(y)
+
+            i0 = int(x)
+
+            if y < 0.5:
+                y = 0.5
+            if y > size + 0.5:
+                y = size + 0.5
+
+            j0 = int(y)
+
             s1 = x - i0
+            s0 = 1 - s1
             t1 = y - j0
             t0 = 1.0 - t1
-            i0i = int(i0)
-            i1i = int(i0 + 1.0)
-            j0i = int(j0)
-            j1i = int(j0 + 1.0)
-            d[i, j] = 1.0 - s1 * (t0 * d0[i0i, j0i] + t1 * d0[i0i, j1i]) + \
-                      s1 * (t0 * d0[i1i, j0i] + t1 * d0[i1i, j1i])
+
+            i1 = i0 + 1
+            j1 = j0 + 1
+
+            d[i, j] = s0 * (t0 * d0[i0, j0] + t1 * d0[i0, j1]) + s1 * (t0 * d0[i1, j0] + t1 * d0[i1, j1])
     set_boundaries(d)
 
 
 if __name__ == "__main__":
     frames = 150
-
 
     def calculate_frame(frame):
         density_curr[4:7, 4:7] += 100
